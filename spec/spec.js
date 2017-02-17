@@ -96,4 +96,9 @@ describe('_', function () {
             expect(_.shuffle).to.be.a('function');
         });
     });
+    describe('#invoke', function () {
+        it('is a function', function () {
+            expect(_.invoke).to.be.a('function');
+        });
+    });
 });

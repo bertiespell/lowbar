@@ -78,17 +78,20 @@ _.shuffle = function (list) {
     return result;
 };
 
-console.log(_.shuffle([1,2,3,4,5]));
-
-_.invoke = function () {
-    /*
-    *Calls the method named by methodName on each value in the list. Any extra arguments passed to invoke will be forwarded on to the method invocation.
-
-_.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
-=> [[1, 5, 7], [1, 2, 3]]
- */
-
+_.invoke = function (list, methodName) {
+    // var args = [];
+    // for (var i = 2; i < arguments.length; i++) {
+    //     args.push(arguments[i]);
+    // }
+    var func = _[methodName];
+    var copy = list.slice();
+    for (var i = 0; i < copy.length; i++) {
+        copy[i] = func(copy[i]);
+    }
+    return copy;
 };
+
+console.log(_.invoke([[1,2],[1,2,3]], 'shuffle'));
 
 if (typeof module !== 'undefined') {
     module.exports = _;
