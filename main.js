@@ -67,14 +67,18 @@ _.delay = function (func, wait) {
     setTimeout(doSomething, wait);
 };
 
-_.shuffle = function () {
-//      Returns a shuffled copy of the list, using a version of the Fisher-Yates shuffle.
-
-// _.shuffle([1, 2, 3, 4, 5, 6]);
-// => [4, 1, 6, 3, 5, 2]
-
-
+_.shuffle = function (list) {
+    var result = [];
+    var copy = list.slice();
+     while (copy.length !== 0) {
+        var random = Math.floor(Math.random() * copy.length);
+        result.push(copy[random]);
+        copy.splice(random, 1);
+    }
+    return result;
 };
+
+console.log(_.shuffle([1,2,3,4,5]));
 
 _.invoke = function () {
     /*

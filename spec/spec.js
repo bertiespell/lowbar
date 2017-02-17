@@ -91,4 +91,9 @@ describe('_', function () {
             expect(spy.args[0]).to.eql([5,3,4]);
         });
     });
+    describe('#shuffle', function () {
+        it('is a function', function () {
+            expect(_.shuffle).to.be.a('function');
+        });
+    });
 });
