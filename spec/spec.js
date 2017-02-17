@@ -72,15 +72,16 @@ describe('_', function () {
         it('is a function', function () {
             expect(_.delay).to.be.a('function');
         });
-        // it('still performs the function', function () {
-        //     var spy = sinon.spy(function (n) {
-        //         return n * 2;
-        //     });
-        //     var clock = sinon.useFakeTimers();
-        //     var actual = _.delay(spy, 0, 1);
-        //     clock.tick(1000);
-        //     expect(actual).to.equal(2);
-        // });
+        it('still performs the function', function () {
+            var result = 0;
+            var spy = sinon.spy(function (n) {
+                result = n * 2;
+            });
+            var clock = sinon.useFakeTimers();
+            _.delay(spy, 0, 1);
+            clock.tick(1000);
+            expect(result).to.equal(2);
+        });
         it('works for numerous arguments', function () {
             var spy = sinon.spy(function () {});
             var clock = sinon.useFakeTimers();
