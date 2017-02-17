@@ -56,7 +56,33 @@ _.memoize = function (func) {
     };
 };
 
-_.delay = function () {
+_.delay = function (func, wait) {
+    var args = [];
+    for (var i = 2; i < arguments.length; i++) {
+        args.push(arguments[i]);
+    }
+    function doSomething () {
+        return func.apply(null, args);
+    }
+    setTimeout(doSomething, wait);
+};
+
+_.shuffle = function () {
+//      Returns a shuffled copy of the list, using a version of the Fisher-Yates shuffle.
+
+// _.shuffle([1, 2, 3, 4, 5, 6]);
+// => [4, 1, 6, 3, 5, 2]
+
+
+};
+
+_.invoke = function () {
+    /*
+    *Calls the method named by methodName on each value in the list. Any extra arguments passed to invoke will be forwarded on to the method invocation.
+
+_.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+=> [[1, 5, 7], [1, 2, 3]]
+ */
 
 };
 
