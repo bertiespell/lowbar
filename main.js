@@ -68,13 +68,117 @@ _.delay = function (func, wait) {
     for (var i = 2; i < arguments.length; i++) {
         args.push(arguments[i]);
     }
-    function doSomething () {
-       return func.apply(null, args); 
-    } 
+    function doSomething() {
+        return func.apply(null, args);
+    }
     setTimeout(doSomething, wait);
 }
 
+_.shuffle = function () {
+}
 
+_.zip = function () {
+    const results = [];
+    for (var i = 0; i < arguments[0].length; i++) {
+        let tempArr = [];
+        for (var j = 0; j < arguments.length; j++) {
+            tempArr.push(arguments[j][i]);
+        }
+        results.push(tempArr);
+    }
+    return results;
+};
+
+_.sortedIndex = function (list, value, iteratee) {
+    if (arguments.length === 3) {
+        return binarySearch(_.sortBy(list, iteratee), value);
+    }
+    function binarySearch(list, name) {
+        var s = 0;
+        var e = list.length - 1;
+        for (var i = 0; i < 10; i++) {
+            var m = Math.floor((e + s) / 2);
+            if (list[m] === name) {
+                return m;
+            }
+            if (name < list[m]) {
+                e = m - 1;
+            }
+            if (name > list[m]) {
+                s = m + 1;
+            }
+        }
+        return m + 1;
+    }
+    return binarySearch(list, value);
+}
+
+_.sortBy = function (list, iteratee) {
+    if (typeof iteratee === 'string') {
+        let orderedArray = [];
+        list.forEach(function (element) {
+            orderedArray.push(element[iteratee]);
+        });
+        orderedArray.sort();
+        var result = [];
+        orderedArray.forEach(function (element) {
+            list.forEach(function (key) {
+                if (key[iteratee] === element) {
+                    result.push(key);
+                }
+            });
+        });
+        return result;
+    }
+    if (Array.isArray(list)) {
+        return list.sort(function (a, b) {
+            return iteratee(a) - iteratee(b);
+        });
+    }
+};
+
+_.every = function (list, predicate) {
+    var array = [];
+    _.each(list, function (element) {
+        if (predicate(element)) array.push(element);
+    });
+    if (array.length === list.length) return true;
+    return false;
+    // I am sure there is a way to refactor this with reduce! 
+}
+
+
+/** Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will only be flattened a single level. */
+
+_.flatten = function (list, bool) {
+    const res = [];
+
+    if (bool) {
+        list.forEach(function (element) {
+            if (!Array.isArray(element)) {
+                res.push(element);
+            } else {
+                element.forEach(function (element) {
+                    res.push(element)
+                });
+            }
+        });
+    }
+    else {
+        var flattenRecursion = function (arr) {
+            if (!Array.isArray(arr)) {
+                res.push(arr);
+            }
+            else {
+                arr.forEach(function (element) {
+                    return flattenRecursion(element);
+                });
+            }
+        };
+        flattenRecursion(list);
+    }
+    return res;
+}
 
 
 
@@ -202,96 +306,10 @@ _.delay = function (func, wait) {
 //     }
 // };
 
-// _.sortBy = function (list, iteratee) {
-//     if (typeof iteratee === 'string') {
-//         let orderedArray = [];
-//         list.forEach(function (element) {
-//             orderedArray.push(element[iteratee]);
-//         });
-//         orderedArray.sort();
-//         var result = [];
-//         orderedArray.forEach(function (element) {
-//             list.forEach(function (key) {
-//                 if (key[iteratee] === element) {
-//                     result.push(key);
-//                 }
-//             });
-//         });
-//         return result;
-//     }
-//     if (Array.isArray(list)) {
-//         return list.sort(function (a, b) {
-//             return iteratee(a) - iteratee(b);
-//         });
-//     }
-// };
+
 // /** Merges together the values of each of the arrays with the values at the corresponding position. Useful when you have separate data sources that are coordinated through matching array indexes. Use with apply to pass in an array of arrays. If you're working with a matrix of nested arrays, this can be used to transpose the matrix.
 
 //  */
-// _.zip = function () {
-//     const results = [];
-//     for (var i = 0; i < arguments[0].length; i++) {
-//         let tempArr = [];
-//         for (var j = 0; j < arguments.length; j++) {
-//             tempArr.push(arguments[j][i]);
-//         }
-//         results.push(tempArr);
-//     }
-//     return results;
-// };
-
-// _.sortedIndex = function (list, value, iteratee) {
-//     if (arguments.length === 3) {
-//         return binarySearch(_.sortBy(list, iteratee), value);
-//     }
-//     function binarySearch(list, name) {
-//         var s = 0;
-//         var e = list.length - 1;
-//         for (var i = 0; i < 10; i++) {
-//             var m = Math.floor((e + s) / 2);
-//             if (list[m] === name) {
-//                 return m;
-//             }
-//             if (name < list[m]) {
-//                 e = m - 1;
-//             }
-//             if (name > list[m]) {
-//                 s = m + 1;
-//             }
-//         }
-//         return m + 1;
-//     }
-//     return binarySearch(list, value);
-// }
-
-// _.every = function (list, predicate) {
-//     var array = [];
-//     _.each(list, function (element) {
-//         if (predicate(element)) array.push(element);
-//     });
-//     if (array.length === list.length) return true;
-//     return false;
-//     // I am sure there is a way to refactor this with reduce! 
-// }
-
-
-// /** Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will only be flattened a single level. */
-
-// _.flatten = function (list) {
-//     const res = [];
-//     var flattenRecursion = function (list) {
-//         list.forEach(function (element) {
-//             if (!Array.isArray(list)) {
-//                 res.push(list);
-//             }
-//             else {
-//                 return flattenRecursion(element);
-//             }
-//         });
-//     }
-//     flattenRecursion(list);
-//     return res;
-// }
 
 
 if (typeof module !== 'undefined') {
