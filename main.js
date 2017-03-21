@@ -145,14 +145,10 @@ _.every = function (list, predicate) {
     if (array.length === list.length) return true;
     return false;
     // I am sure there is a way to refactor this with reduce! 
-}
-
-
-/** Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will only be flattened a single level. */
+};
 
 _.flatten = function (list, bool) {
     const res = [];
-
     if (bool) {
         list.forEach(function (element) {
             if (!Array.isArray(element)) {
@@ -178,11 +174,36 @@ _.flatten = function (list, bool) {
         flattenRecursion(list);
     }
     return res;
+};
+
+_.shuffle = function (list) {
+    var result = [];
+    var listLength = list.length
+    while (result.length !== listLength) {
+        var randomNumber = createRandomNumber(0, list.length-1);
+        result.push(list[randomNumber]);
+        list = list.slice(0, randomNumber).concat(list.slice(randomNumber+1));
+    }
+    return result;
 }
 
+function createRandomNumber (max, min) {
+     return Math.floor(Math.random() * (max - min)) + min;    
+}
 
+_.first = function (array, n) {
+  if (arguments.length === 1) return array[0];
+  return array.slice(0, n);
+}
 
-
+_.invoke = function (list, methodName, ...args) {
+    var newList = list.slice();
+    var func = _[methodName];
+    for (var key in newList) {
+        newList[key] = func.apply(this, [newList[key], ...args]);
+    }
+    return newList;
+}
 
 
 

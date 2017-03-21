@@ -11,15 +11,15 @@ This time, the methods you need to implement are a little trickier. Many of them
 2. once
 3. memoize
 4. delay
-5. shuffle
-6. invoke
+5. shuffle ##
+6. invoke ##
 7. sortBy (NB the Underscore library uses the native JavaScript sort but feel free to use your sort algorithm!)
 8. zip
 9. sortedIndex
 10. flatten
-11. intersection
-12. difference
-13. throttle
+11. intersection ##
+12. difference ##
+13. throttle ##
 
 ## Resources
 

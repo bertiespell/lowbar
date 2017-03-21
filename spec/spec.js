@@ -95,12 +95,17 @@ describe('_', function () {
             expect(_.shuffle).to.be.a('function');
         });
     });
-    xdescribe('#invoke', function () {
+    describe('#invoke', function () {
         it('is a function', function () {
             expect(_.invoke).to.be.a('function');
         });
+        it('should call the method on each thing in the list', function () {
+            var actual = _.invoke([[5, 1, 7], [3, 2, 1]], 'first', 2);
+            var expected = [[5, 1], [3, 2]];
+            expect(actual).to.eql(expected);
+        })
     });
-    xdescribe('#throttle', function () {
+    describe('#throttle', function () {
         it('is a function', function () {
             expect(_.throttle).to.be.a('function');
         });
