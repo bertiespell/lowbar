@@ -105,7 +105,25 @@ describe('_', function () {
             expect(actual).to.eql(expected);
         })
     });
-    describe('#throttle', function () {
+    describe('#intersection', () => {
+        it('is a function', () => {
+            expect(_.intersection).to.be.a('function');
+        });
+        it('if value is present in all arrays, add to results array', () => {
+            const actual = _.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+            expect(actual).to.eql([1, 2]);
+        });
+    });
+    describe('#difference', () => {
+        it('is a function', () => {
+            expect(_.intersection).to.be.a('function');
+        });
+        it('if value is present in all arrays, add to results array', () => {
+            const actual = _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
+            expect(actual).to.eql([1, 3, 4]);
+        });
+    });
+    xdescribe('#throttle', function () {
         it('is a function', function () {
             expect(_.throttle).to.be.a('function');
         });

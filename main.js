@@ -180,20 +180,20 @@ _.shuffle = function (list) {
     var result = [];
     var listLength = list.length
     while (result.length !== listLength) {
-        var randomNumber = createRandomNumber(0, list.length-1);
+        var randomNumber = createRandomNumber(0, list.length - 1);
         result.push(list[randomNumber]);
-        list = list.slice(0, randomNumber).concat(list.slice(randomNumber+1));
+        list = list.slice(0, randomNumber).concat(list.slice(randomNumber + 1));
     }
     return result;
 }
 
-function createRandomNumber (max, min) {
-     return Math.floor(Math.random() * (max - min)) + min;    
+function createRandomNumber(max, min) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 _.first = function (array, n) {
-  if (arguments.length === 1) return array[0];
-  return array.slice(0, n);
+    if (arguments.length === 1) return array[0];
+    return array.slice(0, n);
 }
 
 _.invoke = function (list, methodName, ...args) {
@@ -205,7 +205,58 @@ _.invoke = function (list, methodName, ...args) {
     return newList;
 }
 
+/** intersection_.intersection(*arrays)
+Computes the list of values that are the intersection of all the arrays. Each value in the result is present in each of the arrays.
 
+_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+=> [1, 2]
+ */
+
+_.contains = function (list, value, fromIndex) {
+    if (!fromIndex) fromIndex = 0;
+    for (var i = fromIndex; i < list.length; i++) {
+        if (list[i] === value) return true;
+    }
+    return false;
+}
+
+_.every = function (list, predicate, context) {
+    if (!context) context = this;
+    let every = true;
+    for (var key in list) {
+        if (!predicate.call(context, list[key])) {
+            every = false;
+        }
+    }
+    return every;
+}
+
+_.intersection = function () {
+    var result = [];
+    var args = [...arguments];
+    for (var j = 0; j < args[0].length; j++) {
+        var current = args[0][j];
+        if (_.every(args, function (array) {
+            return _.contains(array, current);
+        }))
+        result.push(current);
+    }
+    return result;
+}
+
+_.difference = function () {
+    var result = [];
+    var args = [...arguments];
+    var alternate = args.slice(1, args.length);
+    for (var j = 0; j < args[0].length; j++) {
+        var current = args[0][j];
+        if (_.every(alternate, function (array) {
+            return !_.contains(array, current);
+        }))
+        result.push(current);
+    }
+    return result;
+}
 
 
 
