@@ -21,6 +21,25 @@ describe('_', function () {
             expect(_.identity()).to.be.an('undefined');
         });
     });
+    describe('#first', function () {
+        it('is a function', function () {
+            expect(_.first).to.be.a('function');
+        });
+        // it('should return undefined if there are no arguments, or if the argument is not a valid array', function () {
+        //     expect(_.first()).to.eql(undefined);
+        //     expect(_.first('test')).to.eql(undefined);
+        // });
+        // it('should return first element in array', function () {
+        //     expect(_.first([1, 2, 3])).to.equal(1);
+        //     expect(_.first([1, 2, 3], 1)).to.equal(1);
+        // });
+        it('should return the first \'n\' elements', function () {
+            expect(_.first([1, 2, 3, 4, 5], 3)).to.eql([1, 2, 3]);
+        });
+        it('should return the whole array if n is greater than or equal to the array.length', function () {
+            expect(_.first([1, 2, 3], 4)).to.eql([1, 2, 3]);
+        });
+    });
     describe('#indexOf', function () {
         it('is a function', function () {
             expect(_.indexOf).to.be.a('function');
@@ -136,7 +155,7 @@ describe('_', function () {
             expect(actual).to.eql([1, 3, 4]);
         });
     });
-    describe('#throttle', function () {
+    xdescribe('#throttle', function () {
         it('is a function', function () {
             expect(_.throttle).to.be.a('function');
         });
@@ -180,7 +199,7 @@ describe('_', function () {
         });
         it('should merge arrays together based on index position', () => {
             const actual = _.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]);
-            const expected = [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]];
+            const expected = [['moe', 30, true], ['larry', 40, false], ['curly', 50, false]];
             expect(actual).to.eql(expected);
         });
     });
