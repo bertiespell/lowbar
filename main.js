@@ -89,6 +89,19 @@ _.reject = function (list, func, context) {
   return result;
 };
 
+_.uniq = function (array, isSorted, iteratee) {
+  // TODO: find algorithm for isSorted
+  var result = [];
+  if (!array) return result;
+  for (var i = 0; i < array.length; i++) {
+    if (iteratee && result.indexOf(iteratee(array[i]))) {
+      result.push(array[i]);
+    }
+    else if (result.indexOf(array[i]) === -1) result.push(array[i]);
+  }
+  return result;
+};
+
 _.once = function (func) {
     var called = true;
     var result;

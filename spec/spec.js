@@ -129,6 +129,25 @@ describe('_', function () {
             expect(_.reject([1, 2, 3, 4, 5, 6], function (num) { return num % 2 === 0; })).to.eql([1, 3, 5]);
         });
     });
+    describe('#uniq', function () {
+        it('should be a function', function () {
+            expect(_.uniq).to.be.a('function');
+        });
+        it('should return an empty array if no arguments are passed', function () {
+            expect(_.uniq()).to.eql([]);
+        });
+        it('should return uniq elements in array', function () {
+            expect(_.uniq([1, 2, 1, 4, 1, 3])).to.eql([1, 2, 4, 3]);
+            expect(_.uniq([2, 2, 2])).to.eql([2]);
+            expect(_.uniq([])).to.eql([]);
+        });
+        it('should work for other value types', function () {
+            expect(_.uniq('hello')).to.eql(['h', 'e', 'l', 'o']);
+            expect(_.uniq(665)).to.eql([]);
+            expect(_.uniq({})).to.eql([]);
+            expect(_.uniq(true)).to.eql([]);
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');
