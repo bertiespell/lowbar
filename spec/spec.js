@@ -107,6 +107,17 @@ describe('_', function () {
             expect(_.indexOf(jumbledArray, '1', false)).to.equal(4);
         });
     });
+    describe('#filter', function () {
+        it('should be a function', function () {
+            expect(_.filter).to.be.a('function');
+        });
+        it('if there\'s no predicate it should return list', function () {
+            expect(_.filter([1, 2])).to.eql([1, 2]);
+        });
+        it('should filter correctly', function () {
+            expect(_.filter([1, 2, 3, 4, 5, 6], function (num) { return num % 2 === 0; })).to.eql([2, 4, 6]);
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');

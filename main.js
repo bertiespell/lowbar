@@ -34,7 +34,7 @@ _.each = function (list, iteratee, context) {
         func(list[key], key, list);
     } 
     return list;
-}
+};
 
 _.indexOf = function (array, value, bool) {
     if (arguments.length < 3 || !bool) {
@@ -63,6 +63,18 @@ _.indexOf = function (array, value, bool) {
     if (bool) {
         return binarySearch(array, value);
     }
+};
+
+_.filter = function (list, func, context) {
+  if (!context) context = this;
+  if (!func) return list;
+  var result = [];
+  for (var i = 0; i < list.length; i++) {
+    if (func.apply(context, [list[i], i, list])) {
+      result.push(list[i]);
+    }
+  }
+  return result;
 };
 
 _.once = function (func) {
