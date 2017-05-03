@@ -272,6 +272,16 @@ describe('_', function () {
             expect(actual).to.eql(expected);
         });
     });
+    describe('#defaults', function () {
+        it('should be a function', function () {
+            expect(_.defaults).to.be.a('function');
+        });
+        it('should set defaults', () => {
+            var iceCream = {flavor: 'chocolate'};
+            const actual = _.defaults(iceCream, {flavor: 'vanilla', sprinkles: 'lots'});
+            expect(actual).to.eql({flavor: 'chocolate', sprinkles: 'lots'});
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');

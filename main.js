@@ -193,6 +193,15 @@ _.extend = function (destination) {
     return destination;
 };
 
+_.defaults = function (object, defaults) {
+  for (var key in defaults) {
+    if (!object[key]) {
+      object[key] = defaults[key]
+    }
+  }
+  return object;
+};
+
 _.once = function (func) {
     var called = true;
     var result;
