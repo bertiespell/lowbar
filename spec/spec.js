@@ -221,6 +221,15 @@ describe('_', function () {
             expect(_.contains([1, 2, 3], 4)).to.equal(false);
         });
     });
+    describe('#every', function () {
+        it('should be a function', function () {
+            expect(_.every).to.be.a('function');
+        });
+        it('should return true is all the values in the list pass the predicate truth test, false if an element fails the predicate', function () {
+            expect(_.every([2, 4, 5], function (num) { return num % 2 == 0; })).to.eql(false);
+            expect(_.every([2, 4, 6], function (num) { return num % 2 == 0; })).to.eql(true);
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');

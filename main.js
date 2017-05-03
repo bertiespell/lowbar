@@ -159,6 +159,17 @@ _.contains = function (list, value, fromIndex) {
   return false;
 };
 
+_.every = function (list, predicate, context) {
+  if (!context) context = this;
+  let every = true;
+  for (var key in list) {
+    if (!predicate.call(context, list[key])) {
+      every = false;
+    }
+  }
+  return every;
+};
+
 _.once = function (func) {
     var called = true;
     var result;
