@@ -243,6 +243,35 @@ describe('_', function () {
             expect(_.some(noEvens, isEven)).to.eql(false);
         });
     });
+    describe('#extend', function () {
+        it('should be a function', function () {
+            expect(_.extend).to.be.a('function');
+        });
+        it('should copy shallowly all properties in source object to the destination object', function () {
+            expect(_.extend({name: 'moe'}, {age: 50})).to.eql({name: 'moe', age: 50});
+        });
+        it('copies the properties of the source object into the target', function () {
+            var actual = _.extend({}, {name: 'Sam'});
+            var expected = {name: 'Sam'};
+            expect(actual).to.eql(expected);
+        });
+        it('overwrites existing properties', function () {
+            var actual = _.extend({}, {name: 'joe', name: 'Sam'});
+            var expected = {name: 'Sam'};
+            expect(actual).to.eql(expected);
+        });
+        it('copies properties from multiple source arguments', function () {
+            var actual = _.extend({name: 'sam'}, {name: 'Joe'}, {name: 'Mauro', age: 27});
+            var expected = {name: 'Mauro', age: 27};
+            expect(actual).to.eql(expected);
+        });
+        xit('works for arrays', function () {
+            var actual = _.extend([1, 2, 3], [4, 5, 6], {name: 'Mauro'});
+            var expected = [4, 5, 6];
+            expected.name = 'Mauro';
+            expect(actual).to.eql(expected);
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');

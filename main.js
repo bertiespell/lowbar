@@ -32,7 +32,7 @@ _.each = function (list, iteratee, context) {
     }
     for (var key in list) {
         func(list[key], key, list);
-    } 
+    }
     return list;
 };
 
@@ -66,40 +66,40 @@ _.indexOf = function (array, value, bool) {
 };
 
 _.filter = function (list, func, context) {
-  if (!context) context = this;
-  if (!func) return list;
-  var result = [];
-  for (var i = 0; i < list.length; i++) {
-    if (func.apply(context, [list[i], i, list])) {
-      result.push(list[i]);
+    if (!context) context = this;
+    if (!func) return list;
+    var result = [];
+    for (var i = 0; i < list.length; i++) {
+        if (func.apply(context, [list[i], i, list])) {
+            result.push(list[i]);
+        }
     }
-  }
-  return result;
+    return result;
 };
 
 _.reject = function (list, func, context) {
-  if (!context) context = this;
-  if (!func) return list;
-  var result = [];
-  for (var i = 0; i < list.length; i++) {
-    if (!func.apply(context, [list[i], i, list])) {
-      result.push(list[i]);
+    if (!context) context = this;
+    if (!func) return list;
+    var result = [];
+    for (var i = 0; i < list.length; i++) {
+        if (!func.apply(context, [list[i], i, list])) {
+            result.push(list[i]);
+        }
     }
-  }
-  return result;
+    return result;
 };
 
 _.uniq = function (array, isSorted, iteratee) {
-  // TODO: find algorithm for isSorted
-  var result = [];
-  if (!array) return result;
-  for (var i = 0; i < array.length; i++) {
-    if (iteratee && result.indexOf(iteratee(array[i]))) {
-      result.push(array[i]);
+    // TODO: find algorithm for isSorted
+    var result = [];
+    if (!array) return result;
+    for (var i = 0; i < array.length; i++) {
+        if (iteratee && result.indexOf(iteratee(array[i]))) {
+            result.push(array[i]);
+        }
+        else if (result.indexOf(array[i]) === -1) result.push(array[i]);
     }
-    else if (result.indexOf(array[i]) === -1) result.push(array[i]);
-  }
-  return result;
+    return result;
 };
 
 _.map = function (list, iteratee, context) {
@@ -121,66 +121,76 @@ _.pluck = function (list, propertyName) {
 };
 
 _.reduce = function (list, iteratee, memo, context) {
-  if (!context) context = this;
-  if (Array.isArray(list)) {
-    for (let i = 0; i < list.length; i++) {
-      if (memo === undefined) {
-        memo = list[0];
-        i++;
-        memo = iteratee.apply(context, [memo, list[i], i, list]);
-      }
-      else {
-        memo = iteratee.apply(context, [memo, list[i], i, list]);
-      }
+    if (!context) context = this;
+    if (Array.isArray(list)) {
+        for (let i = 0; i < list.length; i++) {
+            if (memo === undefined) {
+                memo = list[0];
+                i++;
+                memo = iteratee.apply(context, [memo, list[i], i, list]);
+            }
+            else {
+                memo = iteratee.apply(context, [memo, list[i], i, list]);
+            }
+        }
     }
-  }
-  else {
-    var keys = Object.keys(list);
-    for (var i = 0; i < keys.length; i++) {
-      if (memo === undefined) {
-        memo = list[keys[i]];
-        i++;
-        memo = iteratee.apply(context, [memo, list[keys[i]], i, list]);
-      }
-      else {
-        memo = iteratee.apply(context, [memo, list[keys[i]], i, list]);
-      }
+    else {
+        var keys = Object.keys(list);
+        for (var i = 0; i < keys.length; i++) {
+            if (memo === undefined) {
+                memo = list[keys[i]];
+                i++;
+                memo = iteratee.apply(context, [memo, list[keys[i]], i, list]);
+            }
+            else {
+                memo = iteratee.apply(context, [memo, list[keys[i]], i, list]);
+            }
+        }
     }
-  }
-  return memo;
+    return memo;
 };
 
 _.contains = function (list, value, fromIndex) {
-  // TODO: does work for objects?
-  if (!fromIndex) fromIndex = 0;
-  for (var i = fromIndex; i < list.length; i++) {
-    if (list[i] === value) return true;
-  }
-  return false;
+    // TODO: does work for objects?
+    if (!fromIndex) fromIndex = 0;
+    for (var i = fromIndex; i < list.length; i++) {
+        if (list[i] === value) return true;
+    }
+    return false;
 };
 
 _.every = function (list, predicate, context) {
-  if (!context) context = this;
-  let every = true;
-  for (var key in list) {
-    if (!predicate.call(context, list[key])) {
-      every = false;
+    if (!context) context = this;
+    let every = true;
+    for (var key in list) {
+        if (!predicate.call(context, list[key])) {
+            every = false;
+        }
     }
-  }
-  return every;
+    return every;
 };
 
 _.some = function (list, predicate, context) {
-  if (!context) context = this;
-  for (var key in list) {
-    if (!predicate) {
-      if (list[key]) return true;
+    if (!context) context = this;
+    for (var key in list) {
+        if (!predicate) {
+            if (list[key]) return true;
+        }
+        else if (predicate.call(context, list[key])) {
+            return true;
+        }
     }
-    else if (predicate.call(context, list[key])) {
-      return true;
+    return false;
+};
+
+_.extend = function (destination) {
+    // TODO: implement with second argument: source
+    for (var i = 1; i < arguments.length; i++) {
+        for (var key in arguments[i]) {
+            destination[key] = arguments[i][key];
+        }
     }
-  }
-  return false;
+    return destination;
 };
 
 _.once = function (func) {
