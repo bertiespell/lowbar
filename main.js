@@ -102,6 +102,16 @@ _.uniq = function (array, isSorted, iteratee) {
   return result;
 };
 
+_.map = function (list, iteratee, context) {
+    // TODO: check that it works for other contexts
+    if (!context) context = this;
+    var result = [];
+    for (var key in list) {
+        result.push(iteratee.apply(context, [list[key], key, list]));
+    }
+    return result;
+};
+
 _.once = function (func) {
     var called = true;
     var result;
