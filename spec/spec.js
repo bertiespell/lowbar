@@ -123,20 +123,20 @@ describe('_', function () {
             expect(actual).to.eql([1, 3, 4]);
         });
     });
-    xdescribe('#throttle', function () {
+    describe('#throttle', function () {
         it('is a function', function () {
             expect(_.throttle).to.be.a('function');
         });
         it('should call the function once per wait', function () {
             var spy = sinon.spy(function () { });
             var clock = sinon.useFakeTimers();
-            var test = _.throttle(spy, 1000);
+            _.throttle(spy, 1000);
             expect(spy.callCount).to.equal(1);
-            test();
+            _.throttle(spy, 1000);
             expect(spy.callCount).to.equal(1);
-            test();
+            _.throttle(spy, 1000);
             expect(spy.callCount).to.equal(1);
-            test();
+            _.throttle(spy, 1000);
             expect(spy.callCount).to.equal(1);
             clock.tick(1000);
             expect(spy.callCount).to.equal(2);
