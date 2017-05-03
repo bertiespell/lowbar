@@ -8,6 +8,19 @@ describe('_', function () {
     it('is an object', function () {
         expect(_).to.be.an('object');
     });
+    describe('#identity', function () {
+        it('is a function', function () {
+            expect(_.identity).to.be.a('function');
+        });
+        it('returns the argument passed to it', function () {
+            expect(_.identity(1)).to.equal(1);
+            var tstArr = [1, 2, 3];
+            expect(_.identity(tstArr)).to.equal(tstArr);
+        });
+        it('returns undefined if no arguments are passed', function () {
+            expect(_.identity()).to.be.an('undefined');
+        });
+    });
     describe('#indexOf', function () {
         it('is a function', function () {
             expect(_.indexOf).to.be.a('function');
