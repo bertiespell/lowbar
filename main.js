@@ -15,6 +15,13 @@ _.first = function (array, n) {
     return result;
 };
 
+_.last = function (array, n) {
+    if ((n || arguments.length) === 1) {
+        return array[array.length - 1];
+    }
+    return _.first(array.reverse(), n).reverse();
+};
+
 _.indexOf = function (array, value, bool) {
     if (arguments.length < 3 || !bool) {
         for (var i = 0; i < array.length; i++) {

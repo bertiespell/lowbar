@@ -40,6 +40,20 @@ describe('_', function () {
             expect(_.first([1, 2, 3], 4)).to.eql([1, 2, 3]);
         });
     });
+    describe('#last', function () {
+        it('is a function', function () {
+            expect(_.last).to.be.a('function');
+        });
+        it('should return last element in array', function () {
+            expect(_.last([1, 2, 3])).to.equal(3);
+        });
+        it('should return the last \'n\' elements', function () {
+            expect(_.last([1, 2, 3, 4, 5], 3)).to.eql([3, 4, 5]);
+        });
+        it('should return the whole array if n is greater than or equal to the array.length', function () {
+            expect(_.last([1, 2, 3], 4)).to.eql([1, 2, 3]);
+        });
+    });
     describe('#indexOf', function () {
         it('is a function', function () {
             expect(_.indexOf).to.be.a('function');
