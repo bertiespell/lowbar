@@ -120,6 +120,36 @@ _.pluck = function (list, propertyName) {
     return result;
 };
 
+_.reduce = function (list, iteratee, memo, context) {
+  if (!context) context = this;
+  if (Array.isArray(list)) {
+    for (let i = 0; i < list.length; i++) {
+      if (memo === undefined) {
+        memo = list[0];
+        i++;
+        memo = iteratee.apply(context, [memo, list[i], i, list]);
+      }
+      else {
+        memo = iteratee.apply(context, [memo, list[i], i, list]);
+      }
+    }
+  }
+  else {
+    var keys = Object.keys(list);
+    for (var i = 0; i < keys.length; i++) {
+      if (memo === undefined) {
+        memo = list[keys[i]];
+        i++;
+        memo = iteratee.apply(context, [memo, list[keys[i]], i, list]);
+      }
+      else {
+        memo = iteratee.apply(context, [memo, list[keys[i]], i, list]);
+      }
+    }
+  }
+  return memo;
+};
+
 _.once = function (func) {
     var called = true;
     var result;

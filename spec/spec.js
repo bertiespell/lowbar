@@ -180,6 +180,38 @@ describe('_', function () {
             expect(actual).to.eql(expected);
         });
     });
+    describe('#reduce', function () {
+        it('should add up all numbers in an array if told to', function () {
+            function addUp (acc, num) { return acc + num; }
+            expect(_.reduce([1, 2, 3, 4], addUp, 0)).to.equal(10);
+        });
+        it('should add up all numbers in an array starting from a memo value', function () {
+            function addUp (acc, num) { return acc + num; }
+            expect(_.reduce([1, 2, 3, 4], addUp, 1)).to.equal(11);
+        });
+        it('should assume the memo to be the first element if no memo given', function () {
+            function addUp (acc, num) { return acc + num; }
+            expect(_.reduce([2, 2, 3, 10], addUp)).to.equal(17);
+        });
+        it('reduces an array of alues into an object with frequencies', function () {
+            var actual = _.reduce([1, 2, 3, 1], function (acc, num) {
+                if (acc[num]) {
+                    acc[num]++;
+                } else {
+                    acc[num] = 1;
+                }
+                return acc;
+            }, {});
+            var expected = {1: 2, 2: 1, 3: 1};
+            expect(actual).to.eql(expected);
+        });
+        it('should work for objects', () => {
+            function add (memo, num) { return memo += num; }
+            var expected = 545;
+            var actual = _.reduce({a: 34, b: 23, c: 342, d: 123, e: 23}, add);
+            expect(actual).to.equal(expected);
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');
