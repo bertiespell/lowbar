@@ -63,14 +63,14 @@ describe('_', function () {
         });
         it('should check that iteratee has been run', function () {
             var counter = 0;
-            function addOne() { counter++; }
+            function addOne () { counter++; }
             _.each([1, 2, 3], addOne);
             expect(counter).to.equal(3);
         });
         it('should also work on an object', function () {
             var counter = 0;
-            function addOne() { counter++; }
-            _.each({ one: 1, two: 2, three: 3 }, addOne);
+            function addOne () { counter++; }
+            _.each({one: 1, two: 2, three: 3}, addOne);
             expect(counter).to.equal(3);
         });
         it('binds the iteratee to the specified context', function () {
@@ -153,11 +153,11 @@ describe('_', function () {
             expect(_.map).to.be.a('function');
         });
         it('should return a new array where a function has been applied to each element', function () {
-            function doubleNum(num) { return num * 2; }
+            function doubleNum (num) { return num * 2; }
             expect(_.map([1, 2, 3, 4], doubleNum)).to.eql([2, 4, 6, 8]);
         });
         it('should run the function for every element in array', function () {
-            function doubleNum(num) { return num * 2; }
+            function doubleNum (num) { return num * 2; }
             var expected = 4; // the number of times doubleNum has run
             var spy = sinon.spy(doubleNum); // 4
             _.map([1, 2, 3, 4], spy);
@@ -165,7 +165,19 @@ describe('_', function () {
         });
         it('should work for an object', function () {
             var func = function (element) { return element + 10; };
-            expect(_.map({ A: 1, B: 2 }, func)).to.eql([11, 12]);
+            expect(_.map({A: 1, B: 2}, func)).to.eql([11, 12]);
+        });
+    });
+    describe('#pluck', function () {
+        it('should return an array containing propetyName values', function () {
+            var actual = _.pluck([{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}], 'name');
+            var expected = ['moe', 'larry', 'curly'];
+            expect(actual).to.eql(expected);
+        });
+        it('should return an array of undefines if no propertyName argument is passed', function () {
+            var actual = _.pluck([{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}]);
+            var expected = [undefined, undefined, undefined];
+            expect(actual).to.eql(expected);
         });
     });
     describe('#once', function () {
@@ -282,9 +294,9 @@ describe('_', function () {
             expect(_.sortBy).to.be.a('function');
         });
         it('should sort objects by key', function () {
-            var stooges = [{ name: 'moe', age: 40 }, { name: 'larry', age: 50 }, { name: 'curly', age: 60 }];
+            var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
             var actual = _.sortBy(stooges, 'name');
-            var expected = [{ name: 'curly', age: 60 }, { name: 'larry', age: 50 }, { name: 'moe', age: 40 }];
+            var expected = [{name: 'curly', age: 60}, {name: 'larry', age: 50}, {name: 'moe', age: 40}];
             expect(actual).to.eql(expected);
         });
         it('should work for arrays', () => {
@@ -314,8 +326,8 @@ describe('_', function () {
 
         });
         it('should return the insetion index', () => {
-            var stooges = [{ name: 'moe', age: 40 }, { name: 'curly', age: 60 }];
-            var actual = _.sortedIndex(stooges, { name: 'larry', age: 50 }, 'age');
+            var stooges = [{name: 'moe', age: 40}, {name: 'curly', age: 60}];
+            var actual = _.sortedIndex(stooges, {name: 'larry', age: 50}, 'age');
             var expected = 1;
             expect(actual).to.eql(expected);
         });

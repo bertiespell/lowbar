@@ -112,6 +112,14 @@ _.map = function (list, iteratee, context) {
     return result;
 };
 
+_.pluck = function (list, propertyName) {
+    const result = [];
+    for (var key in list) {
+        result.push(list[key][propertyName]);
+    }
+    return result;
+};
+
 _.once = function (func) {
     var called = true;
     var result;
