@@ -22,6 +22,20 @@ _.last = function (array, n) {
     return _.first(array.reverse(), n).reverse();
 };
 
+_.each = function (list, iteratee, context) {
+    let func = iteratee.bind(context);
+    if (Array.isArray(list)) {
+        for (var index = 0; index < list.length; index++) {
+            func(list[index], index, list);
+        }
+        return list;
+    }
+    for (var key in list) {
+        func(list[key], key, list);
+    } 
+    return list;
+}
+
 _.indexOf = function (array, value, bool) {
     if (arguments.length < 3 || !bool) {
         for (var i = 0; i < array.length; i++) {

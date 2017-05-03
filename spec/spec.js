@@ -54,6 +54,31 @@ describe('_', function () {
             expect(_.last([1, 2, 3], 4)).to.eql([1, 2, 3]);
         });
     });
+    describe('#each', function () {
+        it('is a function', function () {
+            expect(_.each).to.be.a('function');
+        });
+        it('should return the complete list', function () {
+            expect(_.each([1, 2, 3, 4], function () { })).to.eql([1, 2, 3, 4]);
+        });
+        it('should check that iteratee has been run', function () {
+            var counter = 0;
+            function addOne () { counter++; }
+            _.each([1, 2, 3], addOne);
+            expect(counter).to.equal(3);
+        });
+        it('should also work on an object', function () {
+            var counter = 0;
+            function addOne () { counter++; }
+            _.each({one: 1, two: 2, three: 3}, addOne);
+            expect(counter).to.equal(3);
+        });
+        it('binds the iteratee to the specified context', function () {
+            let spy = sinon.spy();
+            _.each([1, 2, 3], spy, [2, 3, 4]);
+            expect(spy.thisValues[0]).to.eql([2, 3, 4]);
+        });
+    });
     describe('#indexOf', function () {
         it('is a function', function () {
             expect(_.indexOf).to.be.a('function');
@@ -149,7 +174,7 @@ describe('_', function () {
             var actual = _.invoke([[5, 1, 7], [3, 2, 1]], 'first', 2);
             var expected = [[5, 1], [3, 2]];
             expect(actual).to.eql(expected);
-        })
+        });
     });
     describe('#intersection', () => {
         it('is a function', () => {
@@ -196,9 +221,9 @@ describe('_', function () {
             expect(_.sortBy).to.be.a('function');
         });
         it('should sort objects by key', function () {
-            var stooges = [{ name: 'moe', age: 40 }, { name: 'larry', age: 50 }, { name: 'curly', age: 60 }];
+            var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
             var actual = _.sortBy(stooges, 'name');
-            var expected = [{ name: 'curly', age: 60 }, { name: 'larry', age: 50 }, { name: 'moe', age: 40 }];
+            var expected = [{name: 'curly', age: 60}, {name: 'larry', age: 50}, {name: 'moe', age: 40}];
             expect(actual).to.eql(expected);
         });
         it('should work for arrays', () => {
@@ -228,8 +253,8 @@ describe('_', function () {
 
         });
         it('should return the insetion index', () => {
-            var stooges = [{ name: 'moe', age: 40 }, { name: 'curly', age: 60 }];
-            var actual = _.sortedIndex(stooges, { name: 'larry', age: 50 }, 'age');
+            var stooges = [{name: 'moe', age: 40}, {name: 'curly', age: 60}];
+            var actual = _.sortedIndex(stooges, {name: 'larry', age: 50}, 'age');
             var expected = 1;
             expect(actual).to.eql(expected);
         });
