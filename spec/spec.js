@@ -230,6 +230,19 @@ describe('_', function () {
             expect(_.every([2, 4, 6], function (num) { return num % 2 == 0; })).to.eql(true);
         });
     });
+    describe('#some', function () {
+        it('should be a function', function () {
+            expect(_.some).to.be.a('function');
+        });
+        it('should return true if any of the values in the list pass the predicate truth test', function () {
+            expect(_.some([null, 0, 'yes', false])).to.eql(true);
+            var isEven = function (element) { return (element % 2 === 0); };
+            var withEvens = [1, 2, 3, 4];
+            var noEvens = [1, 3, 5, 7];
+            expect(_.some(withEvens, isEven)).to.eql(true);
+            expect(_.some(noEvens, isEven)).to.eql(false);
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');

@@ -170,6 +170,19 @@ _.every = function (list, predicate, context) {
   return every;
 };
 
+_.some = function (list, predicate, context) {
+  if (!context) context = this;
+  for (var key in list) {
+    if (!predicate) {
+      if (list[key]) return true;
+    }
+    else if (predicate.call(context, list[key])) {
+      return true;
+    }
+  }
+  return false;
+};
+
 _.once = function (func) {
     var called = true;
     var result;
