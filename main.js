@@ -77,6 +77,18 @@ _.filter = function (list, func, context) {
   return result;
 };
 
+_.reject = function (list, func, context) {
+  if (!context) context = this;
+  if (!func) return list;
+  var result = [];
+  for (var i = 0; i < list.length; i++) {
+    if (!func.apply(context, [list[i], i, list])) {
+      result.push(list[i]);
+    }
+  }
+  return result;
+};
+
 _.once = function (func) {
     var called = true;
     var result;
