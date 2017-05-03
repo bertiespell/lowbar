@@ -150,6 +150,15 @@ _.reduce = function (list, iteratee, memo, context) {
   return memo;
 };
 
+_.contains = function (list, value, fromIndex) {
+  // TODO: does work for objects?
+  if (!fromIndex) fromIndex = 0;
+  for (var i = fromIndex; i < list.length; i++) {
+    if (list[i] === value) return true;
+  }
+  return false;
+};
+
 _.once = function (func) {
     var called = true;
     var result;

@@ -212,6 +212,15 @@ describe('_', function () {
             expect(actual).to.equal(expected);
         });
     });
+    describe('#contains', function () {
+        it('should be a function', function () {
+            expect(_.contains).to.be.a('function');
+        });
+        it('should produce true if it contains value', function () {
+            expect(_.contains([1, 2, 3], 3)).to.equal(true);
+            expect(_.contains([1, 2, 3], 4)).to.equal(false);
+        });
+    });
     describe('#once', function () {
         it('is a function', function () {
             expect(_.once).to.be.a('function');
