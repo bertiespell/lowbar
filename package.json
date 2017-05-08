@@ -19,13 +19,11 @@
     "url": "https://github.com/bertiespell/w02-advanced-lowbar/issues"
   },
   "homepage": "https://github.com/bertiespell/w02-advanced-lowbar#readme",
-  "dependencies": {
-    "husky": "^0.13.1"
-  },
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.15.0",
     "mocha": "^3.2.0",
-    "sinon": "^1.17.7"
+    "sinon": "^1.17.7",
+    "husky": "^0.13.1"
   }
 }

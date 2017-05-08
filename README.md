@@ -565,6 +565,8 @@ _.difference = function () {
 
 ## [](#throttle)_.throttle
 
+Creates and returns a new, throttled version of the passed function, that, when invoked repeatedly, will only actually call the original function at most once per every wait milliseconds. Useful for rate-limiting events that occur faster than you can keep up with.
+
 ``` javascript
 _.throttle = function (func, wait) {
     var args = [...arguments].slice(2, arguments.length);

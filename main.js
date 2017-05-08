@@ -191,7 +191,7 @@ _.extend = function (destination) {
 _.defaults = function (object, defaults) {
   for (var key in defaults) {
     if (!object[key]) {
-      object[key] = defaults[key]
+      object[key] = defaults[key];
     }
   }
   return object;
@@ -271,7 +271,7 @@ _.sortedIndex = function (list, value, iteratee) {
 };
 
 _.sortBy = function (list, iteratee) {
-    //TODO: this could take in third argument context.
+    // TODO: this could take in third argument context.
     if (typeof iteratee === 'string') {
         let orderedArray = [];
         list.forEach(function (element) {

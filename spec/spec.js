@@ -158,8 +158,8 @@ describe('_', function () {
         });
         it('should run the function for every element in array', function () {
             function doubleNum (num) { return num * 2; }
-            var expected = 4; // the number of times doubleNum has run
-            var spy = sinon.spy(doubleNum); // 4
+            var expected = 4;
+            var spy = sinon.spy (doubleNum);
             _.map([1, 2, 3, 4], spy);
             expect(spy.callCount).to.equal(expected);
         });
@@ -256,7 +256,7 @@ describe('_', function () {
             expect(actual).to.eql(expected);
         });
         it('overwrites existing properties', function () {
-            var actual = _.extend({}, {name: 'joe', name: 'Sam'});
+            var actual = _.extend({name: 'joe'}, {name: 'Sam'});
             var expected = {name: 'Sam'};
             expect(actual).to.eql(expected);
         });
@@ -369,26 +369,22 @@ describe('_', function () {
             expect(actual).to.eql([1, 3, 4]);
         });
     });
-    xdescribe('#throttle', function () {
+    describe('#throttle', function () {
         it('is a function', function () {
             expect(_.throttle).to.be.a('function');
         });
         it('should call the function once per wait', function () {
-            var spy = sinon.spy(function () { });
-            var clock = sinon.useFakeTimers();
-            _.throttle(spy, 1000);
-            expect(spy.callCount).to.equal(1);
-            _.throttle(spy, 1000);
-            expect(spy.callCount).to.equal(1);
-            _.throttle(spy, 1000);
-            expect(spy.callCount).to.equal(1);
-            _.throttle(spy, 1000);
-            expect(spy.callCount).to.equal(1);
-            clock.tick(1000);
-            expect(spy.callCount).to.equal(2);
-            expect(spy.callCount).to.equal(2);
-            clock.tick(1000);
-            expect(spy.callCount).to.equal(3);
+            let clock;
+            before(() => clock = sinon.useFakeTimers());
+            it('performs wait', () => {
+                const callback = sinon.spy();
+                const throttled = _.throttle(callback, 100);
+                throttled();
+                clock.tick(99);
+                expect(callback.notCalled).to.equal(true);
+                clock.tick(1);
+                expect(callback.calledOnce).to.equal(true);
+            });
         });
     });
     describe('#sortBy', () => {
