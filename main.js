@@ -6,13 +6,8 @@ _.identity = function (val) {
 
 _.first = function (array, n) {
     if (!Array.isArray(array)) return;
-    if ((n || arguments.length) === 1) return array[0];
-    if (n >= array.length) return array;
-    var result = [];
-    for (var i = 0; i < n; i++) {
-        result.push(array[i]);
-    }
-    return result;
+    if (arguments.length === 1  || n === 1) return array[0];
+    return array.slice(0, n);
 };
 
 _.last = function (array, n) {
@@ -276,6 +271,7 @@ _.sortedIndex = function (list, value, iteratee) {
 };
 
 _.sortBy = function (list, iteratee) {
+    //TODO: this could take in third argument context.
     if (typeof iteratee === 'string') {
         let orderedArray = [];
         list.forEach(function (element) {
@@ -297,15 +293,6 @@ _.sortBy = function (list, iteratee) {
             return iteratee(a) - iteratee(b);
         });
     }
-};
-
-_.every = function (list, predicate) {
-    var array = [];
-    _.each(list, function (element) {
-        if (predicate(element)) array.push(element);
-    });
-    if (array.length === list.length) return true;
-    return false;
 };
 
 _.flatten = function (list, bool) {
@@ -351,11 +338,6 @@ _.shuffle = function (list) {
 function createRandomNumber (max, min) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
-_.first = function (array, n) {
-    if (arguments.length === 1) return array[0];
-    return array.slice(0, n);
-};
 
 _.invoke = function (list, methodName, ...args) {
     var newList = list.slice();

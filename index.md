@@ -20,13 +20,8 @@ _.identity = function (val) {
 ``` javascript
 _.first = function (array, n) {
     if (!Array.isArray(array)) return;
-    if ((n || arguments.length) === 1) return array[0];
-    if (n >= array.length) return array;
-    var result = [];
-    for (var i = 0; i < n; i++) {
-        result.push(array[i]);
-    }
-    return result;
+    if (arguments.length === 1  || n === 1) return array[0];
+    return array.slice(0, n);
 };
 ```
 

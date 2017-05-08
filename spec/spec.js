@@ -25,14 +25,14 @@ describe('_', function () {
         it('is a function', function () {
             expect(_.first).to.be.a('function');
         });
-        // it('should return undefined if there are no arguments, or if the argument is not a valid array', function () {
-        //     expect(_.first()).to.eql(undefined);
-        //     expect(_.first('test')).to.eql(undefined);
-        // });
-        // it('should return first element in array', function () {
-        //     expect(_.first([1, 2, 3])).to.equal(1);
-        //     expect(_.first([1, 2, 3], 1)).to.equal(1);
-        // });
+        it('should return undefined if there are no arguments, or if the argument is not a valid array', function () {
+            expect(_.first()).to.eql(undefined);
+            expect(_.first('test')).to.eql(undefined);
+        });
+        it('should return first element in array', function () {
+            expect(_.first([1, 2, 3])).to.eql(1);
+            expect(_.first([1, 2, 3], 1)).to.equal(1);
+        });
         it('should return the first \'n\' elements', function () {
             expect(_.first([1, 2, 3, 4, 5], 3)).to.eql([1, 2, 3]);
         });
