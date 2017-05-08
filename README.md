@@ -6,9 +6,7 @@ Welcome to my reimplementation of some of the key parts of [underscore.JS](http:
 var _ = {};
 ```
 
-This project is hosted on Github Page [here](https://bertiespell.github.io/lowbar/), and test coverage can be run locally using. 
-
-This will require Node v7.0.0 or higher which you can download and install [here](https://nodejs.org/en/download/).
+This project is hosted on Github Pages [here](https://bertiespell.github.io/lowbar/). Test coverage can be run locally using Node. This will require Node v7.0.0 or higher which you can download and install [here](https://nodejs.org/en/download/).
 
 Clone the project, navigate into the directory and then install the necessary dependencies:
 
