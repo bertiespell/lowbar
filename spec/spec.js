@@ -265,7 +265,7 @@ describe('_', function () {
             var expected = {name: 'Mauro', age: 27};
             expect(actual).to.eql(expected);
         });
-        xit('works for arrays', function () {
+        it('works for arrays', function () {
             var actual = _.extend([1, 2, 3], [4, 5, 6], {name: 'Mauro'});
             var expected = [4, 5, 6];
             expected.name = 'Mauro';

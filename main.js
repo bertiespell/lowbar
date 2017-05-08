@@ -85,7 +85,6 @@ _.reject = function (list, func, context) {
 };
 
 _.uniq = function (array, isSorted, iteratee) {
-    // TODO: find algorithm for isSorted
     var result = [];
     if (!array) return result;
     for (var i = 0; i < array.length; i++) {
@@ -98,7 +97,6 @@ _.uniq = function (array, isSorted, iteratee) {
 };
 
 _.map = function (list, iteratee, context) {
-    // TODO: check that it works for other contexts
     if (!context) context = this;
     var result = [];
     for (var key in list) {
@@ -146,7 +144,6 @@ _.reduce = function (list, iteratee, memo, context) {
 };
 
 _.contains = function (list, value, fromIndex) {
-    // TODO: does work for objects?
     if (!fromIndex) fromIndex = 0;
     for (var i = fromIndex; i < list.length; i++) {
         if (list[i] === value) return true;
@@ -179,7 +176,6 @@ _.some = function (list, predicate, context) {
 };
 
 _.extend = function (destination) {
-    // TODO: implement with second argument: source
     for (var i = 1; i < arguments.length; i++) {
         for (var key in arguments[i]) {
             destination[key] = arguments[i][key];
