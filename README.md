@@ -17,14 +17,15 @@ cd lowbar
 
 npm install
 
+``` 
+You can now use npm to run the test scripts:
+
+```s
 npm test
 
 ```
 
-
-# [](#header-1)LowBar
-
-This is a reimplementation of the underscore library!
+# [](#header-1)Methods
 
 ## [](#identity)_.identity
 

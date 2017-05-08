@@ -4,7 +4,28 @@ layout: default
 
 # [](#header-1)LowBar
 
-This is a reimplementation of the underscore library!
+Welcome to my reimplementation of some of the key parts of [underscore.JS](http://underscorejs.org/)! Underscore extends the core JavaScript library to provide a new host of useful functional programming helpers (which I use often in other projects). It does so without extending any built-in objects, instead we build up methods on an underscore object:
+
+var _ = {};
+
+The source code for this project is available on Github [here](https://bertiespell.github.io/lowbar/), and comes with extensive testing. In order to run the tests, you'll need Node v7.0.0 or higher which you can download and install [here](https://nodejs.org/en/download/).
+
+Once you've cloned the project from Github, navigate into the directory and then install the necessary dependencies:
+
+```s
+git clone https://github.com/bertiespell/lowbar.git
+
+cd lowbar
+
+npm install
+
+``` 
+You can now use npm to run the test scripts:
+
+```s
+npm test
+
+```
 
 ## [](#identity)_.identity
 
